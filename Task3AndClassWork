@@ -1,0 +1,169 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+
+namespace ConsoleApp11
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] array = new int[6];
+            //Console.WriteLine("Введет значения");
+            //for(int i=0; i<array.Length; i++)
+            //{
+            //    Console.WriteLine($"Зачение {i+1}");
+            //    int c = Convert.ToInt32(Console.ReadLine());
+
+            //}
+            //Console.WriteLine();
+            //for (int i = 0; i < array.Length; i++)
+            //{
+            //    Random  rnd = new Random();
+            //    array[i] = rnd.Next(0,100);
+
+            //    Console.WriteLine(array[i]);
+            //}
+
+            int c = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                c += array[i];
+
+
+            }
+            Console.WriteLine(c);
+            c /= 6;
+            Console.WriteLine(c);
+            double[] arrayD = new double[6];
+            double d = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                Random rnd = new Random();
+                arrayD[i] = rnd.Next(0, 100);
+
+                Console.WriteLine(arrayD[i]);
+                d += arrayD[i];
+            }
+
+            d = Math.Round(d, 3);
+            c = 0;
+            int k = 0, l = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] != 0)
+                {
+                    if (array[i] % 2 == 1)
+                    {
+                        k++;
+                    }
+                    else
+                    {
+                        l--;
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            string[] lines = File.ReadAllLines(@"C:\Users\furyn\source\repos\ConsoleApp11\ConsoleApp11\test.txt").Take(6).ToArray();
+            int size = 6;
+
+            int[,] arr = new int[size, size];
+
+            // разобрать в массив
+            for (int i = 0; i < size; i++)
+            {
+                int[] row = lines[i].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(Int32.Parse).ToArray();
+                for (int j = 0; j < size; j++)
+                {
+                    arr[i, j] = row[j];
+                    Console.Write($"\t{arr[i,j ]}");
+                }
+                Console.WriteLine();
+            }
+
+
+
+
+            string read = @"C:\Users\furyn\source\repos\ConsoleApp11\ConsoleApp11\test.txt";
+            string text = "";
+            using (StreamReader sr = new StreamReader(read, System.Text.Encoding.Default))
+                
+            {
+                text = sr.ReadToEnd();
+            }
+            //Console.WriteLine(text);
+            //for (int i = 0; i < array.Length; i++)
+            //{
+            //    string[] test = text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            //    array[i] = Int32.Parse(test[i]);
+            //    Console.Write($"\t{array[i]}");
+
+            //}
+            int[,] mass = new int[6, 6];
+            for (int j = 0; j < 6; j++)
+            {
+                
+            
+                for (int i = 0; i <6; i++)
+                {
+                    string[] test = text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    
+                    mass[j,i] = Int32.Parse(test[i]);
+
+                    
+                    mass[i,j] = Int32.Parse(test[j]);
+
+                    //Console.Write($"\t{mass[j,i]}");
+
+                }
+            }
+
+
+
+            Random rnd1 = new Random();
+
+            //int [ , ]mass = new  int[10, 10];
+            //for (int i = 0; i < 10; i ++) 
+            //{
+               
+            //    for (int j = 0; j < 10; j++)
+            //    {
+            //        mass[i, j] = rnd1.Next(1, 15);
+            //        Console.Write("{0}\t", mass[i, j]);
+            //    }
+            //}
+
+            //int[,] array2 = new int[10, 10];
+            //int[] max = new int[array2.Length];
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    max[i] = 0;
+            //    for (int j = 0; j < 10; j++)
+            //    {
+                    
+            //        array2[i, j] = rnd1.Next(0, 15);
+            //        if (array2[i, j] > max[i]) max[i] = array2[i, j];
+            //    }
+            //}
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    for (int j = 0; j < 10; j++)
+            //    {
+            //        Console.Write($"{array2[i, j]}\t");
+            //    }
+            //    Console.Write(max[i]);
+            //    Console.WriteLine();
+            //}
+
+
+        }
+    }
+}
